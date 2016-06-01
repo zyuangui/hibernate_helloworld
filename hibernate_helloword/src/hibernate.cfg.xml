@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+	<!-- 要链接数据库的用户名 -->
+	<property name="connection.username">root</property>
+	<!-- 要链接数据库的密码 -->
+	<property name="connection.password">admin</property>
+	<!-- 链接数据库的url -->
+	<property name="connection.url">
+		jdbc:mysql://localhost:3306/test
+	</property>
+	<!-- 方言 告诉hibernate用什么样的数据库 -->
+	<property name="dialect">
+		org.hibernate.dialect.MySQL5Dialect
+	</property>
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<!-- validate 默认值 根据持久化类和映射文件检查表的结构 update hibernate容器在启动的时候，会根据持久化类和映射文件检查表的结构 
+		如果不存在，则创建，如果存在，则更新 create 每次启动hibernate容器，不管表是否存在，都会创建 create-drop 当启动hibernate容器时创建表，当hibernate容器销毁时，删除表 -->
+
+	<!-- 加hbm2ddl.auto的目的是为了在存在数据库，但是还没有存在表的情况下会自动的创建对应的数据库表，不加的话将不会自动创建 -->
+	<property name="hbm2ddl.auto">update</property>
+	<!-- 添加该属性的目的是为了在控制台打印出相应的sql语句 -->
+	<property name="show_sql">true</property>
+	<!-- 添加该属性是为了将打印出来的SQL语句格式化输出，方便看 -->
+	<property name="format_sql">true</property>
+	<!-- 如果是要使用这行的话那就需要在实体类中用注解的方式对主键进行注解 -->
+	<mapping class="cn.edu.jxnu.entity.User"/>
+
+	<!-- 该行是为了加载实体类对应的映射表 -->
+	<!-- <mapping resource="cn/edu/jxnu/entity/User.hbm.xml" /> -->
+</session-factory>
+</hibernate-configuration>
